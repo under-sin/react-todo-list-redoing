@@ -1,0 +1,47 @@
+.AddTaskContainer {
+  position: relative;
+  top: -28px;
+
+  width: 100%;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.AddTaskContainer > input {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 8px;
+  background: var(--gray-500);
+  border: 1px solid var(--gray-700);
+  color: var(--gray-100);
+
+  line-height: 1.4;
+}
+
+.AddTaskContainer > input::placeholder {
+  color: var(--gray-300);
+}
+
+.AddTaskContainer button[type='submit'] {
+  font-size: 0.875rem;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 0;
+  color: var(--gray-100);
+  background: var(--blue-dark);
+  font-weight: 700;
+  line-height: 1.4;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+
+  cursor: pointer;
+
+  transition: all ease 0.1s;
+}
+
+.AddTaskContainer button[type='submit']:hover {
+  background: var(--blue);
+}
