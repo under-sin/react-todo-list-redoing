@@ -3,9 +3,15 @@ import clipBoard from '../assets/Clipboard.svg';
 import styles from './Task.module.css';
 import { TaskList } from './TaskList';
 
-export function Task() {
-  const [taskList, setTaskList] = useState(['conteudo']);
+interface TasksProps {
+  id: number;
+  title: string;
+  isCompleted: boolean;
+}
 
+export function Task({ title }: TasksProps) {
+  const [taskList, setTaskList] = useState('Conteudo');
+  console.log(title)
   return (
     <div className={styles.containerTasks}>
       <div className={styles.progressTasks}>

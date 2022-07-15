@@ -2,25 +2,27 @@ import { PlusCircle } from 'phosphor-react';
 import { ChangeEvent, useState } from 'react';
 import styles from './AddTask.module.css';
 
-interface AddTaskProps {
-  taskContent: (content: string[]) => void;
+interface Task {
+  id: number;
+  title: string;
+  isCompleted: boolean;
 }
 
-export function AddTask({ taskContent }: AddTaskProps) {
-  const [contentTask, setContentTask] = useState(['Task inicial']);
+export function AddTask() {
+  const [contentTask, setContentTask] = useState<Task[]>([]);
   const [addNewTask, setAddNewTask] = useState('');
 
-  contentTask.forEach((content) => {
-    console.log(content);
-  });
-
   function handleCreateNewTask() {
-    setContentTask([...contentTask, addNewTask]);
-    setAddNewTask('');
-  }
+    if (!addNewTask) return;
 
-  function handleNewTaskChange(event: ChangeEvent<HTMLInputElement>) {
-    setAddNewTask(event.target.value);
+    const newTask = {
+      id: Math.random(),
+      title: addNewTask,
+      isCompleted: false,
+    };
+
+    setContentTask([...contentTask, newTask]);
+    setAddNewTask('');
   }
 
   return (
@@ -29,7 +31,7 @@ export function AddTask({ taskContent }: AddTaskProps) {
         type="text"
         value={addNewTask}
         placeholder="Adicione uma nova tarefa"
-        onChange={handleNewTaskChange}
+        onChange={(e) => setAddNewTask(e.target.value)}
       />
       <button onClick={handleCreateNewTask} type="submit">
         Criar

@@ -2,7 +2,7 @@ import { Trash } from 'phosphor-react';
 import styles from './TaskList.module.css';
 
 interface TaskListProps {
-  content: string[];
+  content: string;
 }
 
 export function TaskList({ content }: TaskListProps) {
