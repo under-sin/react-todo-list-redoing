@@ -4,12 +4,19 @@ import { Header } from './components/Header';
 import { Task } from './components/Task';
 import './global.css';
 
+const taskListContent: any[] = [];
+function addTaskContent(content: string[]): void {
+  taskListContent.push(content);
+
+  console.log(taskListContent);
+}
+
 export function App() {
   return (
     <>
       <Header />
       <div className={styles.wrapper}>
-        <AddTask />
+        <AddTask taskContent={addTaskContent} />
         <Task />
       </div>
     </>
