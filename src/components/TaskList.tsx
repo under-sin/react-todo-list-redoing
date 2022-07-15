@@ -11,7 +11,9 @@ export function TaskList() {
           Duis vel sed fames integer.
         </label>
       </div>
-      <Trash />
+      <button className={styles.deleteTask}>
+        <Trash />
+      </button>
     </div>
   );
 }

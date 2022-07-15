@@ -18,7 +18,7 @@ export function Task() {
       </div>
 
       <div className={styles.contentTaskList}>
-        <TaskList />
+        {/* <TaskList /> */}
         <div className={styles.noTask}>
           <img src={clipBoard} alt="" />
           <strong>Você ainda não tem tarefas cadastradas</strong>
