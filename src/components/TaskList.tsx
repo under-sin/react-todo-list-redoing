@@ -1,22 +1,54 @@
-import { Trash } from 'phosphor-react';
+import { CheckCircle, Circle, Trash } from 'phosphor-react';
 import styles from './TaskList.module.css';
 
-interface TaskListProps {
+interface Task {
   id: number;
   title: string;
   isCompleted: boolean;
 }
 
-export function TaskList({ id, title, isCompleted }: TaskListProps) {
+interface TaskListProps {
+  id: number;
+  title: string;
+  isCompleted: boolean;
+  onDeleteTask: (onDeleteTask: number) => void;
+  onCheckedTask: (onCheckedTask: number) => any;
+}
+
+export function TaskList({
+  id,
+  title,
+  isCompleted,
+  onDeleteTask,
+  onCheckedTask,
+}: TaskListProps) {
+  function handleDeltetTask() {
+    onDeleteTask(id);
+  }
+
+  function handleCheckedTask() {
+    onCheckedTask(id);
+  }
+
   return (
     <div className={styles.taskListContainer}>
       <div className={styles.wrapperInfoList}>
-        <input type="checkbox" id="input" />
-        <label className={styles.taskWrapper} htmlFor="input">
+        <button onClick={handleCheckedTask} className={styles.checkeBox}>
+          {isCompleted ? (
+            <CheckCircle className={styles.checked} size={22} weight="fill" />
+          ) : (
+            <Circle className={styles.check} size={22} />
+          )}
+        </button>
+        <span
+          className={
+            isCompleted ? styles.taskWrapperChecked : styles.taskWrapper
+          }
+        >
           {title}
-        </label>
+        </span>
       </div>
-      <button className={styles.deleteTask}>
+      <button className={styles.deleteTask} onClick={handleDeltetTask}>
         <Trash />
       </button>
     </div>

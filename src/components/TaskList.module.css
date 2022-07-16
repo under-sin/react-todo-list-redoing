@@ -17,6 +17,24 @@
   gap: 0.75rem;
 }
 
+.checkeBox {
+  border: 0;
+  background: transparent;
+}
+
+.check {
+  color: var(--blue);
+}
+
+.checked {
+  color: var(--purple-dark);
+}
+
+.taskWrapperChecked {
+  color: var(--gray-300);
+  text-decoration: line-through;
+}
+
 .deleteTask {
   box-sizing: initial;
   border: 0;

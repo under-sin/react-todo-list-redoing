@@ -11,20 +11,30 @@ interface Tasks {
 
 interface TasksProps {
   tasks: Tasks[];
+  onDeleteTask: (onDeleteTask: number) => void;
+  onCheckedTask: (onCheckedTask: number) => any;
 }
 
-export function Task({ tasks }: TasksProps) {
+export function Task({ tasks, onDeleteTask, onCheckedTask }: TasksProps) {
+  const totalTasks = tasks.length;
+  let taskConcluid = 0;
+  tasks.map((task) => {
+    if (task.isCompleted === true) {
+      taskConcluid++;
+    }
+  });
+
   return (
     <div className={styles.containerTasks}>
       <div className={styles.progressTasks}>
         <strong className={styles.createdTasks}>
           Tarefas criadas
-          <span>0</span>
+          <span>{totalTasks}</span>
         </strong>
 
         <strong className={styles.completedTasks}>
           Concluídas
-          <span>0</span>
+          <span>{taskConcluid}</span>
         </strong>
       </div>
 
@@ -35,9 +45,12 @@ export function Task({ tasks }: TasksProps) {
             }
             return (
               <TaskList
+                key={task.id}
                 id={task.id}
                 title={task.title}
                 isCompleted={task.isCompleted}
+                onDeleteTask={onDeleteTask}
+                onCheckedTask={onCheckedTask}
               />
             );
           })

@@ -5,6 +5,12 @@ import { Header } from './components/Header';
 import { Task } from './components/Task';
 import './global.css';
 
+interface Task {
+  id: number;
+  title: string;
+  isCompleted: boolean;
+}
+
 export function App() {
   const [tasks, setTasks] = useState([
     {
@@ -32,12 +38,34 @@ export function App() {
     setTasks(newTask);
   }
 
+  function onCheckedTask(taskId: number): any {
+    const newTask = tasks.map((task) => {
+      if (task.id === taskId)
+        return { ...task, isCompleted: !task.isCompleted };
+
+      return task;
+    });
+
+    setTasks(newTask);
+
+    console.log(newTask);
+  }
+
+  function onDeleteTask(idTask: number) {
+    const updatedTask = tasks.filter((task) => task.id !== idTask);
+    setTasks(updatedTask);
+  }
+
   return (
     <>
       <Header />
       <div className={styles.wrapper}>
         <AddTask handleTaskAddition={handleTaskAddition} />
-        <Task tasks={tasks} />
+        <Task
+          tasks={tasks}
+          onDeleteTask={onDeleteTask}
+          onCheckedTask={onCheckedTask}
+        />
       </div>
     </>
   );

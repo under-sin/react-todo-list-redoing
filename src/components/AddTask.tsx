@@ -2,10 +2,6 @@ import { PlusCircle } from 'phosphor-react';
 import { ChangeEvent, useState } from 'react';
 import styles from './AddTask.module.css';
 
-interface Task {
-  title: string;
-}
-
 interface AddTaskProps {
   handleTaskAddition: (title: string) => void;
 }
