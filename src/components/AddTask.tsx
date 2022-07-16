@@ -3,25 +3,20 @@ import { ChangeEvent, useState } from 'react';
 import styles from './AddTask.module.css';
 
 interface Task {
-  id: number;
   title: string;
-  isCompleted: boolean;
 }
 
-export function AddTask() {
-  const [contentTask, setContentTask] = useState<Task[]>([]);
+interface AddTaskProps {
+  handleTaskAddition: (title: string) => void;
+}
+
+export function AddTask({ handleTaskAddition }: AddTaskProps) {
   const [addNewTask, setAddNewTask] = useState('');
 
   function handleCreateNewTask() {
     if (!addNewTask) return;
 
-    const newTask = {
-      id: Math.random(),
-      title: addNewTask,
-      isCompleted: false,
-    };
-
-    setContentTask([...contentTask, newTask]);
+    handleTaskAddition(addNewTask);
     setAddNewTask('');
   }
 

@@ -9,16 +9,34 @@ export function App() {
   const [tasks, setTasks] = useState([
     {
       id: Math.random(),
-      title: 'Comentário',
+      title: 'Ir no dentista',
+      isCompleted: false,
+    },
+    {
+      id: Math.random(),
+      title: 'Comprar verdura',
       isCompleted: false,
     },
   ]);
+
+  function handleTaskAddition(taskTitle: string): void {
+    const newTask = [
+      ...tasks,
+      {
+        id: Math.random(),
+        title: taskTitle,
+        isCompleted: false,
+      },
+    ];
+
+    setTasks(newTask);
+  }
 
   return (
     <>
       <Header />
       <div className={styles.wrapper}>
-        <AddTask />
+        <AddTask handleTaskAddition={handleTaskAddition} />
         <Task tasks={tasks} />
       </div>
     </>

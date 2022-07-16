@@ -3,15 +3,17 @@ import clipBoard from '../assets/Clipboard.svg';
 import styles from './Task.module.css';
 import { TaskList } from './TaskList';
 
-interface TasksProps {
+interface Tasks {
   id: number;
   title: string;
   isCompleted: boolean;
 }
 
-export function Task({ title }: TasksProps) {
-  const [taskList, setTaskList] = useState('Conteudo');
-  console.log(title)
+interface TasksProps {
+  tasks: Tasks[];
+}
+
+export function Task({ tasks }: TasksProps) {
   return (
     <div className={styles.containerTasks}>
       <div className={styles.progressTasks}>
@@ -27,12 +29,25 @@ export function Task({ title }: TasksProps) {
       </div>
 
       <div className={styles.contentTaskList}>
-        <TaskList content={taskList} />
-        <div className={styles.noTask}>
-          <img src={clipBoard} alt="prancheta" />
-          <strong>Você ainda não tem tarefas cadastradas</strong>
-          <span>Crie tarefas e organize seus itens a fazer</span>
-        </div>
+        {tasks.length > 0 ? (
+          tasks.map((task) => {
+            if (false) {
+            }
+            return (
+              <TaskList
+                id={task.id}
+                title={task.title}
+                isCompleted={task.isCompleted}
+              />
+            );
+          })
+        ) : (
+          <div className={styles.noTask}>
+            <img src={clipBoard} alt="prancheta" />
+            <strong>Você ainda não tem tarefas cadastradas</strong>
+            <span>Crie tarefas e organize seus itens a fazer</span>
+          </div>
+        )}
       </div>
     </div>
   );
